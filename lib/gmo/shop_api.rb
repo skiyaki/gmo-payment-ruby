@@ -232,6 +232,16 @@ module GMO
         post_request name, options
       end
 
+      # 【コンビニ払い】
+      # 2.2.2.1. 支払い停止
+      # コンビニ決済センターとの通信を行い取引の支払い停止処理を行います。
+      def cvs_cancel(options = {})
+        name = "CvsCancel.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
