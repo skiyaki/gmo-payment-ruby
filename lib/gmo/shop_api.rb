@@ -137,8 +137,8 @@ module GMO
         # }
         required = [:access_id, :access_pass, :order_id, :card_no, :expire]
         if options[:token].present?
-          required.remove(:card_no)
-          required.remove(:expire)
+          required.delete(:card_no)
+          required.delete(:expire)
           required << :token
         end
         assert_required_options(required, options)
