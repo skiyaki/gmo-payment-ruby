@@ -136,6 +136,11 @@ module GMO
         #   "ClientFieldFlag" => client_field_flg
         # }
         required = [:access_id, :access_pass, :order_id, :card_no, :expire]
+        if options[:token].present?
+          required.remove(:card_no)
+          required.remove(:expire)
+          required << :token
+        end
         assert_required_options(required, options)
         post_request name, options
       end
